@@ -1,6 +1,6 @@
 const PRESSED = 1;
 const RELEASED = 0;
-export default class keyboardState {
+export default class KeyboardState {
   constructor() {
     // holds current state of a given key
     this.keyStates = new Map();

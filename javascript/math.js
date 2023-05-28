@@ -27,8 +27,6 @@ export class Matrix {
   }
 }
 
-window.Matrix = Matrix;
-
 export class Vec2 {
   constructor(x, y) {
     this.set(x, y);

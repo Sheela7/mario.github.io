@@ -7,11 +7,22 @@ import { createCollisionLayer } from "./layers.js";
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 
-Promise.all([createMario(), loadLevel("1-1")]).then(([mario, level]) => {
+Promise.all([createMario(), loadLevel("level1")]).then(([mario, level]) => {
   mario.pos.set(64, 64);
+  level.comp.layers.push(createCollisionLayer(level));
+
   level.entities.add(mario);
   const input = setupKeyboard(mario);
   input.listenTo(window);
+
+  ["mousedown", "mousemove"].forEach((eventName) => {
+    canvas.addEventListener(eventName, (event) => {
+      if (event.buttons === 1) {
+        mario.vel.set(0, 0);
+        mario.pos.set(event.offsetX, event.offsetY);
+      }
+    });
+  });
 
   const timer = new Timer(1 / 60);
 
