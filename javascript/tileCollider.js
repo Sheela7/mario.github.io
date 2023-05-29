@@ -13,12 +13,7 @@ export default class TileCollider {
     } else {
       return;
     }
-    const matches = this.tiles.searchByRange(
-      x,
-      x,
-      entity.pos.y,
-      entity.pos.y + entity.size.y
-    );
+    const matches = this.tiles.searchByRange(x, x, entity.pos.y, entity.pos.y + entity.size.y);
     matches.forEach((match) => {
       if (match.tile.name !== "ground") {
         return;
@@ -45,12 +40,7 @@ export default class TileCollider {
     } else {
       return;
     }
-    const matches = this.tiles.searchByRange(
-      entity.pos.x,
-      entity.pos.x + entity.size.x,
-      y,
-      y
-    );
+    const matches = this.tiles.searchByRange(entity.pos.x, entity.pos.x + entity.size.x, y, y);
     matches.forEach((match) => {
       if (match.tile.name !== "ground") {
         return;

@@ -1,36 +1,33 @@
-import Camera from "./Camera.js";
+import Camera from "./camera.js";
 import Timer from "./timer.js";
 import { loadLevel } from "./loaders.js";
 import { createMario } from "./entities.js";
 import { setupKeyboard } from "./input.js";
-import { createCollisionLayer } from "./layers.js";
+import { createCollisionLayer, createCameraLayer } from "./layers.js";
+import { setupMouseControl } from "./debug.js";
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 
 Promise.all([createMario(), loadLevel("level1")]).then(([mario, level]) => {
   const camera = new Camera();
+  window.camera = camera;
   mario.pos.set(64, 64);
-  level.comp.layers.push(createCollisionLayer(level));
+  level.comp.layers.push(createCollisionLayer(level), createCameraLayer(camera));
 
   level.entities.add(mario);
+
   const input = setupKeyboard(mario);
   input.listenTo(window);
 
-  ["mousedown", "mousemove"].forEach((eventName) => {
-    canvas.addEventListener(eventName, (event) => {
-      if (event.buttons === 1) {
-        mario.vel.set(0, 0);
-        mario.pos.set(event.offsetX, event.offsetY);
-      }
-    });
-  });
+  setupMouseControl(canvas, mario, camera);
 
   const timer = new Timer(1 / 60);
-
   timer.update = function update(deltaTime) {
     level.update(deltaTime);
+
     level.comp.draw(context, camera);
   };
+
   timer.start();
 });
