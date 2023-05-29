@@ -1,28 +1,27 @@
-import Entity, {Sides} from '../entity.js';
-import PendulumWalk from '../traits/pendulumWalk.js';
-import {loadSpriteSheet} from '../loaders.js';
+import Entity, { Sides } from "../entity.js";
+import PendulumWalk from "../traits/pendulumWalk.js";
+import { loadSpriteSheet } from "../loaders.js";
 
 export function loadKoopa() {
-    return loadSpriteSheet('koopa')
-    .then(createKoopaFactory);
+  return loadSpriteSheet("koopa").then(createKoopaFactory);
 }
 
 function createKoopaFactory(sprite) {
-    const walkAnim = sprite.animations.get('walk');
+  const walkAnim = sprite.animations.get("walk");
 
-    function drawKoopa(context) {
-        sprite.draw(walkAnim(this.lifetime), context, 0, 0, this.vel.x < 0);
-    }
+  function drawKoopa(context) {
+    sprite.draw(walkAnim(this.lifetime), context, 0, 0, this.vel.x < 0);
+  }
 
-    return function createKoopa() {
-        const koopa = new Entity();
-        koopa.size.set(16, 16);
-        koopa.offset.y = 8;
+  return function createKoopa() {
+    const koopa = new Entity();
+    koopa.size.set(16, 16);
+    koopa.offset.y = 8;
 
-        koopa.addTrait(new PendulumWalk());
+    koopa.addTrait(new PendulumWalk());
 
-        koopa.draw = drawKoopa;
+    koopa.draw = drawKoopa;
 
-        return koopa;
-    };
+    return koopa;
+  };
 }

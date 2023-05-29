@@ -1,6 +1,6 @@
 import Entity from "../entity.js";
-import Go from "../traits/Go.js";
-import Jump from "../traits/Jump.js";
+import Go from "../traits/go.js";
+import Jump from "../traits/jump.js";
 import { loadSpriteSheet } from "../loaders.js";
 
 const SLOW_DRAG = 1 / 1000;
