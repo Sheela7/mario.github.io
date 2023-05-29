@@ -13,7 +13,7 @@ Promise.all([createMario(), loadLevel("level1")]).then(([mario, level]) => {
   const camera = new Camera();
   window.camera = camera;
   mario.pos.set(64, 64);
-  level.comp.layers.push(createCollisionLayer(level), createCameraLayer(camera));
+  // level.comp.layers.push(createCollisionLayer(level), createCameraLayer(camera));
 
   level.entities.add(mario);
 
