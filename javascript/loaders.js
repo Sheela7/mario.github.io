@@ -12,6 +12,7 @@ export function loadImage(url) {
 }
 
 export function loadJSON(url) {
+  console.log('The url is as: ',url)
   return fetch(url).then((r) => r.json());
 }
 
