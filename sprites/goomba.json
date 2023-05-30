@@ -1,5 +1,5 @@
 {
-  "imageURL": "/images/characters.gif",
+  "imageURL": "../images/characters.gif",
 
   "frames": [
     {
