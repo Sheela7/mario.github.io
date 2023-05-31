@@ -3,7 +3,7 @@ import Keyboard from "./keyboardState.js";
 export function setupKeyboard(mario) {
   const input = new Keyboard();
 
-  input.addMapping("KeyP", (keyState) => {
+  input.addMapping("Space", (keyState) => {
     if (keyState) {
       mario.jump.start();
     } else {
@@ -11,7 +11,7 @@ export function setupKeyboard(mario) {
     }
   });
 
-  input.addMapping("KeyO", (keyState) => {
+  input.addMapping("KeyP", (keyState) => {
     mario.turbo(keyState);
   });
 
