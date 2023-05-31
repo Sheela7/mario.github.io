@@ -8,20 +8,11 @@ import { setupKeyboard } from "./input.js";
 import { createCollisionLayer } from "./layers/collision.js";
 import { loadFont } from "./loaders/font.js";
 import { createDashboardLayer } from "./layers/dashboard.js";
-
-function createPlayerEnv(playerEntity) {
-  const playerEnv = new Entity();
-  const playerControl = new PlayerController();
-  playerControl.checkpoint.set(64, 64);
-  playerControl.setPlayer(playerEntity);
-  playerEnv.addTrait(playerControl);
-  return playerEnv;
-}
+import { createPlayerEnv } from "./player.js";
 
 async function main(canvas) {
   const context = canvas.getContext("2d");
   const audioContext = new AudioContext();
-  console.log("The audio context is as: ", audioContext);
 
   const [entityFactory, font] = await Promise.all([loadEntities(audioContext), loadFont()]);
 
