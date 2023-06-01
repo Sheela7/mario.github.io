@@ -2,7 +2,6 @@ import AudioBoard from "../audioBoard.js";
 import { loadJSON } from "../loaders.js";
 
 export function loadAudioBoard(name, audioContext) {
-  console.log("The 2 audio context is as: ", audioContext);
   const loadAudio = createAudioLoader(audioContext);
   return loadJSON(`../sounds/${name}.json`).then((audioSheet) => {
     const audioBoard = new AudioBoard();

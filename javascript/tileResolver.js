@@ -3,6 +3,7 @@ export default class TileResolver {
     this.matrix = matrix;
     this.tileSize = tileSize;
   }
+
   toIndex(pos) {
     return Math.floor(pos / this.tileSize);
   }
@@ -25,12 +26,22 @@ export default class TileResolver {
       const x2 = x1 + this.tileSize;
       const y1 = indexY * this.tileSize;
       const y2 = y1 + this.tileSize;
-      return { tile, x1, x2, y1, y2 };
+      return {
+        tile,
+        indexX,
+        indexY,
+        x1,
+        x2,
+        y1,
+        y2,
+      };
     }
   }
+
   searchByPosition(posX, posY) {
     return this.getByIndex(this.toIndex(posX), this.toIndex(posY));
   }
+
   searchByRange(x1, x2, y1, y2) {
     const matches = [];
     this.toIndexRange(x1, x2).forEach((indexX) => {
