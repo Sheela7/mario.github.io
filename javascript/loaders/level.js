@@ -4,14 +4,6 @@ import { createBackgroundLayer } from "../layers/background.js";
 import { createSpriteLayer } from "../layers/sprites.js";
 import { loadJSON, loadSpriteSheet } from "../loaders.js";
 
-function setupCollision(levelSpec, level) {
-  const mergedTiles = levelSpec.layers.reduce((mergedTiles, layerSpec) => {
-    return mergedTiles.concat(layerSpec.tiles);
-  }, []);
-  const collisionGrid = createCollisionGrid(mergedTiles, levelSpec.patterns);
-  level.setCollisionGrid(collisionGrid);
-}
-
 function setupBackgrounds(levelSpec, level, backgroundSprites) {
   levelSpec.layers.forEach((layer) => {
     const grid = createGrid(layer.tiles, levelSpec.patterns);
@@ -36,9 +28,16 @@ function setupEntities(levelSpec, level, entityFactory) {
 export function createLevelLoader(entityFactory) {
   return function loadLevel(name) {
     return loadJSON(`./levels/${name}.json`)
-      .then((levelSpec) => Promise.all([levelSpec, loadSpriteSheet(levelSpec.spriteSheet)]))
-      .then(([levelSpec, backgroundSprites]) => {
+      .then((levelSpec) =>
+        Promise.all([
+          levelSpec,
+          loadSpriteSheet(levelSpec.spriteSheet),
+          loadMusicSheet(levelSpec.musicSheet),
+        ])
+      )
+      .then(([levelSpec, backgroundSprites, musicPlayer]) => {
         const level = new Level();
+        level.music.setPlayer(musicPlayer);
 
         setupBackgrounds(levelSpec, level, backgroundSprites);
         setupEntities(levelSpec, level, entityFactory);
@@ -52,7 +51,7 @@ function createGrid(tiles, patterns) {
   const grid = new Matrix();
 
   for (const { tile, x, y } of expandTiles(tiles, patterns)) {
-    grid.set(x, y, { type: tile.type });
+    grid.set(x, y, tile);
   }
 
   return grid;

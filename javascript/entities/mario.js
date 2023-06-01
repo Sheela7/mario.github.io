@@ -5,8 +5,8 @@ import Killable from "../traits/killable.js";
 import Physics from "../traits/physics.js";
 import Solid from "../traits/solid.js";
 import Stomper from "../traits/stomper.js";
-import { loadSpriteSheet } from "../loaders.js";
 import { loadAudioBoard } from "../loaders/audio.js";
+import { loadSpriteSheet } from "../loaders/sprite.js";
 
 const SLOW_DRAG = 1 / 1000;
 const FAST_DRAG = 1 / 5000;

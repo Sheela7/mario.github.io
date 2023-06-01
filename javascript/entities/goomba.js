@@ -3,7 +3,7 @@ import Killable from "../traits/killable.js";
 import PendulumMove from "../traits/pendulumMove.js";
 import Physics from "../traits/physics.js";
 import Solid from "../traits/solid.js";
-import { loadSpriteSheet } from "../loaders.js";
+import { loadSpriteSheet } from "../loaders/sprite.js";
 
 export function loadGoomba() {
   return loadSpriteSheet("goomba").then(createGoombaFactory);
