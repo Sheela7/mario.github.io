@@ -8,9 +8,7 @@ function getPlayerTrait(level) {
 
 function getTimerTrait(level) {
   for (const entity of level.entities) {
-    console.log("The entity is as: ", entity);
     if (entity.levelTimer) {
-      console.log("The lever timer found as: ", entity.levelTimer);
       return entity.levelTimer;
     }
   }
