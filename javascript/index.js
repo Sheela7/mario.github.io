@@ -21,6 +21,7 @@ async function main(canvas) {
   const camera = new Camera();
 
   const mario = createPlayer(entityFactory.mario());
+  window.mario = mario;
 
   const playerEnv = createPlayerEnv(mario);
   level.entities.add(playerEnv);

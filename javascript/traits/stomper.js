@@ -1,6 +1,8 @@
 import { Sides, Trait } from "../entity.js";
 
 export default class Stomper extends Trait {
+  static EVENT_STOMP = Symbol("stomp");
+
   constructor() {
     super("stomper");
     this.bounceSpeed = 400;
