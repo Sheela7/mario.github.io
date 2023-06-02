@@ -2,7 +2,9 @@ import { Matrix } from "../math.js";
 import Level from "../level.js";
 import { createBackgroundLayer } from "../layers/background.js";
 import { createSpriteLayer } from "../layers/sprites.js";
-import { loadJSON, loadSpriteSheet } from "../loaders.js";
+import { loadJSON } from "../loaders.js";
+import { loadSpriteSheet } from "./sprite.js";
+import { loadMusicSheet } from "./music.js";
 
 function setupBackgrounds(levelSpec, level, backgroundSprites) {
   levelSpec.layers.forEach((layer) => {
