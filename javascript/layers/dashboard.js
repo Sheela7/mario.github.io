@@ -8,7 +8,9 @@ function getPlayerTrait(level) {
 
 function getTimerTrait(level) {
   for (const entity of level.entities) {
+    console.log("The entity is as: ", entity);
     if (entity.levelTimer) {
+      console.log("The lever timer found as: ", entity.levelTimer);
       return entity.levelTimer;
     }
   }
@@ -19,6 +21,7 @@ export function createDashboardLayer(font, level) {
   const LINE2 = font.size * 2;
 
   const playerTrait = getPlayerTrait(level);
+  console.log("Getting timer trait ", level);
   const timerTrait = getTimerTrait(level);
 
   return function drawDashboard(context) {

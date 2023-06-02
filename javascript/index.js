@@ -16,7 +16,7 @@ async function main(canvas) {
 
   const loadLevel = await createLevelLoader(entityFactory);
 
-  const level = await loadLevel("level1");
+  const level = await loadLevel("debug-coin");
 
   const camera = new Camera();
 

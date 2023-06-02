@@ -1,9 +1,11 @@
 import TileResolver from "./tileResolver.js";
 import { brick } from "./tiles/brick.js";
+import { coin } from "./tiles/coin.js";
 import { ground } from "./tiles/ground.js";
 
 const handlers = {
   brick,
+  coin,
   ground,
 };
 

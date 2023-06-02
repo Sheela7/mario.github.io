@@ -5,6 +5,26 @@ import { createSpriteLayer } from "../layers/sprites.js";
 import { loadJSON } from "../loaders.js";
 import { loadSpriteSheet } from "./sprite.js";
 import { loadMusicSheet } from "./music.js";
+import LevelTimer from "../traits/LevelTimer.js";
+import Entity from "../entity.js";
+
+function createTimer() {
+  const timer = new Entity();
+  timer.addTrait(new LevelTimer());
+  return timer;
+}
+
+function setupBehavior(level) {
+  const timer = createTimer();
+  level.entities.add(timer);
+
+  level.events.listen(LevelTimer.EVENT_TIMER_OK, () => {
+    level.music.playTheme();
+  });
+  level.events.listen(LevelTimer.EVENT_TIMER_HURRY, () => {
+    level.music.playHurryTheme();
+  });
+}
 
 function setupBackgrounds(levelSpec, level, backgroundSprites) {
   levelSpec.layers.forEach((layer) => {
@@ -29,7 +49,7 @@ function setupEntities(levelSpec, level, entityFactory) {
 
 export function createLevelLoader(entityFactory) {
   return function loadLevel(name) {
-    return loadJSON(`./levels/${name}.json`)
+    return loadJSON(`/levels/${name}.json`)
       .then((levelSpec) =>
         Promise.all([
           levelSpec,
@@ -43,6 +63,7 @@ export function createLevelLoader(entityFactory) {
 
         setupBackgrounds(levelSpec, level, backgroundSprites);
         setupEntities(levelSpec, level, entityFactory);
+        setupBehavior(level);
 
         return level;
       });
