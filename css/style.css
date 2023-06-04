@@ -3,9 +3,10 @@ body {
   margin: 0;
 }
 
-#screen {
+#canvas {
   display: block;
   image-rendering: pixelated;
-  height: 100vh;
   margin: auto;
+  height: 56.25vw;
+  max-width: 177.7vh;
 }

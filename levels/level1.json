@@ -156,6 +156,18 @@
     {
       "tiles": [
         {
+          "name": "coin",
+          "type": "coin",
+          "ranges": [
+            [15, 5, 7, 1],
+            [45, 5, 7, 1]
+          ]
+        }
+      ]
+    },
+    {
+      "tiles": [
+        {
           "name": "bricks",
           "type": "brick",
           "ranges": [

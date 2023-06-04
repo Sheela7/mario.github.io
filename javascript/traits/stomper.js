@@ -21,7 +21,7 @@ export default class Stomper extends Trait {
     if (us.vel.y > them.vel.y) {
       this.queue(() => this.bounce(us, them));
       us.sounds.add("stomp");
-      this.events.emit("stomp", us, them);
+      us.events.emit("stomp", us, them);
     }
   }
 }
