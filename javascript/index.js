@@ -54,9 +54,13 @@ async function main(canvas) {
 
 const canvas = document.getElementById("canvas");
 
-const start = () => {
-  window.removeEventListener("click", start);
+const startGame = () => {
+  // Hide the startup screen
+  const startupScreen = document.querySelector(".startup-wrapper");
+  startupScreen.style.display = "none";
+  // Start the game
   main(canvas);
 };
 
-window.addEventListener("click", start);
+const startButton = document.getElementById("startButton");
+startButton.addEventListener("click", startGame);

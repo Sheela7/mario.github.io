@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background: #000;
   margin: 0;
@@ -9,4 +15,72 @@ body {
   margin: auto;
   height: 56.25vw;
   max-width: 177.7vh;
+}
+
+.startup-wrapper {
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  background-color: black;
+  display: flex;
+  justify-content: space-around;
+}
+
+.mario img {
+  object-fit: contain;
+  background-size: cover;
+  max-height: 850px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.name img {
+  object-fit: contain;
+  background-size: cover;
+  max-height: 600px;
+  width: 100%;
+  margin-top: 50px;
+}
+
+#startButton {
+  position: fixed;
+  top: 62vh;
+  left: 70vw;
+  z-index: 2;
+  font-size: 5vh;
+  font-weight: 40;
+  color: black;
+  background-color: forestgreen;
+  text-align: center;
+  cursor: pointer;
+  height: 7vh;
+  width: 9vw;
+  font-size: 4vh;
+  border-radius: 20px;
+  padding: auto;
+}
+
+/* Media Query for screens smaller than 600px */
+@media (max-width: 600px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .mario img {
+    max-height: 400px;
+    margin-top: 20px;
+  }
+
+  .name img {
+    max-height: 300px;
+    margin-top: 30px;
+  }
+
+  #startButton {
+    top: 80vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    font-size: 3vh;
+  }
 }
