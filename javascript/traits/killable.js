@@ -24,12 +24,16 @@ export default class Killable extends Trait {
       if (this.deadTime > this.removeAfter) {
         this.queue(() => {
           level.entities.delete(entity);
-          const startupScreen = document.querySelector(".startup-wrapper");
-          startupScreen.style.display = "flex";
-          const restartButton = document.getElementById("startButton");
-          restartButton.textContent = "Restart";
+          this.restartGame();
         });
       }
     }
+  }
+  restartGame() {
+    console.log("Restarting game");
+    const startupScreen = document.querySelector(".startup-wrapper");
+    startupScreen.style.display = "flex";
+    const restartButton = document.getElementById("startButton");
+    restartButton.textContent = "Restart";
   }
 }
