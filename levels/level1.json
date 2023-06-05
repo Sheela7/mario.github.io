@@ -31,6 +31,23 @@
         }
       ]
     },
+    "flag-pole-green": {
+      "tiles": [
+        {
+          "style": "pole-finial-green",
+          "ranges": [[0, 0]]
+        },
+        {
+          "style": "chocolate",
+          "behavior": "ground",
+          "ranges": [[0, 10]]
+        },
+        {
+          "style": "pole-green",
+          "ranges": [[0, 1, 1, 9]]
+        }
+      ]
+    },
 
     "pipe-section-vert": {
       "tiles": [

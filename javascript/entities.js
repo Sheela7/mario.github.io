@@ -3,12 +3,15 @@ import { loadGoomba } from "./entities/goomba.js";
 import { loadKoopa } from "./entities/koopa.js";
 import { loadBullet } from "./entities/bullet.js";
 import { loadCannon } from "./entities/cannon.js";
+import { loadFlagPole } from "./entities/FlagPole.js";
 
-export function loadEntities(audioContext) {
+export async function loadEntities(audioContext) {
   const entityFactories = {};
 
   function addAs(name) {
-    return (factory) => (entityFactories[name] = factory);
+    return function addFactory(factory) {
+      entityFactories[name] = factory;
+    };
   }
 
   return Promise.all([

@@ -50,3 +50,11 @@ export class Vec2 {
     this.y = y;
   }
 }
+
+export const Direction = {
+    UP: new Vec2(0, -1),
+    DOWN: new Vec2(0, 1),
+    RIGHT: new Vec2(1, 0),
+    LEFT: new Vec2(-1, 0),
+};
+

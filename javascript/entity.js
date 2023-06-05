@@ -14,6 +14,7 @@ export class Trait {
   static EVENT_TASK = Symbol("task");
 
   constructor(name) {
+    console.log("The super trait name is as: ", name);
     this.NAME = name;
     this.listeners = [];
   }

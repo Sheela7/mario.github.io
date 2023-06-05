@@ -7,6 +7,8 @@ import Solid from "../traits/solid.js";
 import Stomper from "../traits/stomper.js";
 import { loadAudioBoard } from "../loaders/audio.js";
 import { loadSpriteSheet } from "../loaders/sprite.js";
+import PipeTraveller from "../traits/pipeTraveller.js";
+import PoleTraveller from "../traits/poleTraveller.js";
 
 const SLOW_DRAG = 1 / 1000;
 const FAST_DRAG = 1 / 5000;
@@ -21,14 +23,36 @@ export function loadMario(audioContext) {
 
 function createMarioFactory(sprite, audio) {
   const runAnim = sprite.animations.get("run");
+  const climbAnim = sprite.animations.get("climb");
+  function getHeading(mario) {
+    const poleTraveller = mario.poleTraveller;
+    if (poleTraveller.distance) {
+      return false;
+    }
+    return mario.go.heading < 0;
+  }
 
   function routeFrame(mario) {
+    const pipeTraveller = mario.pipeTraveller;
+    if (pipeTraveller.movement.x != 0) {
+      return runAnim(pipeTraveller.distance.x * 2);
+    }
+    if (pipeTraveller.movement.y != 0) {
+      return "idle";
+    }
+
+    const poleTraveller = mario.poleTraveller;
+    if (poleTraveller.distance) {
+      return climbAnim(poleTraveller.distance);
+    }
+
     if (mario.jump.falling) {
       return "jump";
     }
 
-    if (mario.go.distance > 0) {
-      if ((mario.vel.x > 0 && mario.go.dir < 0) || (mario.vel.x < 0 && mario.go.dir > 0)) {
+    const go = mario.go;
+    if (go.distance > 0) {
+      if ((mario.vel.x > 0 && go.dir < 0) || (mario.vel.x < 0 && go.dir > 0)) {
         return "break";
       }
 
@@ -43,7 +67,8 @@ function createMarioFactory(sprite, audio) {
   }
 
   function drawMario(context) {
-    sprite.draw(routeFrame(this), context, 0, 0, this.go.heading < 0);
+    // sprite.draw(routeFrame(this), context, 0, 0, this.go.heading < 0);
+    sprite.draw(routeFrame(this), context, 0, 0, getHeading(this));
   }
 
   return function createMario() {
@@ -57,8 +82,12 @@ function createMarioFactory(sprite, audio) {
     mario.addTrait(new Jump());
     mario.addTrait(new Killable());
     mario.addTrait(new Stomper());
+    mario.addTrait(new PipeTraveller());
+    mario.addTrait(new PoleTraveller());
 
+    console.log("The pipetraveller is:", mario.pipeTraveller);
     mario.killable.removeAfter = 0;
+    mario.jump.velocity = 175;
 
     mario.turbo = setTurboState;
     mario.draw = drawMario;
