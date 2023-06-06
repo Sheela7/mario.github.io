@@ -4,6 +4,7 @@ export function loadImage(url) {
     image.addEventListener("load", () => {
       resolve(image);
     });
+    //activating image download
     image.src = url;
   });
 }

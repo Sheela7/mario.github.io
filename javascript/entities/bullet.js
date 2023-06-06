@@ -1,7 +1,7 @@
 import Entity, { Sides, Trait } from "../entity.js";
 import Killable from "../traits/killable.js";
-import Gravity from "../traits/Gravity.js";
-import Velocity from "../traits/Velocity.js";
+import Gravity from "../traits/gravity.js";
+import Velocity from "../traits/velocity.js";
 import { loadSpriteSheet } from "../loaders/sprite.js";
 
 export function loadBullet() {

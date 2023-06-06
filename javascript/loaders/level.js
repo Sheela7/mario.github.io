@@ -5,7 +5,7 @@ import { createSpriteLayer } from "../layers/sprites.js";
 import { loadJSON } from "../loaders.js";
 import { loadSpriteSheet } from "./sprite.js";
 import { loadMusicSheet } from "./music.js";
-import LevelTimer from "../traits/LevelTimer.js";
+import LevelTimer from "../traits/levelTimer.js";
 import Entity from "../entity.js";
 
 function createTimer() {
@@ -29,7 +29,11 @@ function setupBehavior(level) {
 function setupBackgrounds(levelSpec, level, backgroundSprites) {
   levelSpec.layers.forEach((layer) => {
     const grid = createGrid(layer.tiles, levelSpec.patterns);
-    const backgroundLayer = createBackgroundLayer(level, grid, backgroundSprites);
+    const backgroundLayer = createBackgroundLayer(
+      level,
+      grid,
+      backgroundSprites
+    );
     level.comp.layers.push(backgroundLayer);
     level.tileCollider.addGrid(grid);
   });

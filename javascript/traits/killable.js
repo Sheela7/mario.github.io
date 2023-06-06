@@ -21,6 +21,8 @@ export default class Killable extends Trait {
   update(entity, { deltaTime }, level) {
     if (this.dead) {
       this.deadTime += deltaTime;
+      console.log("deltaTime" + deltaTime);
+      console.log("remove after" + this.removeAfter);
       if (this.deadTime > this.removeAfter) {
         this.queue(() => {
           level.entities.delete(entity);
@@ -29,6 +31,7 @@ export default class Killable extends Trait {
       }
     }
   }
+
   restartGame() {
     console.log("Restarting game");
     const startupScreen = document.querySelector(".startup-wrapper");

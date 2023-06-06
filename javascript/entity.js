@@ -1,7 +1,7 @@
 import { Vec2 } from "./math.js";
-import AudioBoard from "./AudioBoard.js";
-import BoundingBox from "./BoundingBox.js";
-import EventBuffer from "./EventBuffer.js";
+import AudioBoard from "./audioBoard.js";
+import BoundingBox from "./boundingBox.js";
+import EventBuffer from "./eventBuffer.js";
 
 export const Sides = {
   TOP: Symbol("top"),
