@@ -1,6 +1,8 @@
 function createEntityLayer(entities) {
   return function drawBoundingBox(context, camera) {
-    context.strokeStyle = "red";
+    // context.strokeStyle = "red";
+    context.strokeStyle = "rgba(0,0,0,0)";
+
     entities.forEach((entity) => {
       context.beginPath();
       context.rect(
@@ -26,10 +28,17 @@ function createTileCandidateLayer(tileResolver) {
   };
 
   return function drawTileCandidates(context, camera) {
-    context.strokeStyle = "blue";
+    // context.strokeStyle = "blue";
+    context.strokeStyle = "rgba(0,0,0,0)";
+
     resolvedTiles.forEach(({ x, y }) => {
       context.beginPath();
-      context.rect(x * tileSize - camera.pos.x, y * tileSize - camera.pos.y, tileSize, tileSize);
+      context.rect(
+        x * tileSize - camera.pos.x,
+        y * tileSize - camera.pos.y,
+        tileSize,
+        tileSize
+      );
       context.stroke();
     });
 
@@ -38,7 +47,9 @@ function createTileCandidateLayer(tileResolver) {
 }
 
 export function createCollisionLayer(level) {
-  const drawTileCandidates = level.tileCollider.resolvers.map(createTileCandidateLayer);
+  const drawTileCandidates = level.tileCollider.resolvers.map(
+    createTileCandidateLayer
+  );
   const drawBoundingBoxes = createEntityLayer(level.entities);
 
   return function drawCollision(context, camera) {

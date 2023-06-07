@@ -12,11 +12,12 @@ const SLOW_DRAG = 1 / 1000;
 const FAST_DRAG = 1 / 5000;
 
 export function loadMario(audioContext) {
-  return Promise.all([loadSpriteSheet("mario"), loadAudioBoard("mario", audioContext)]).then(
-    ([sprite, audio]) => {
-      return createMarioFactory(sprite, audio);
-    }
-  );
+  return Promise.all([
+    loadSpriteSheet("mario"),
+    loadAudioBoard("mario", audioContext),
+  ]).then(([sprite, audio]) => {
+    return createMarioFactory(sprite, audio);
+  });
 }
 
 function createMarioFactory(sprite, audio) {
@@ -28,7 +29,10 @@ function createMarioFactory(sprite, audio) {
     }
 
     if (mario.go.distance > 0) {
-      if ((mario.vel.x > 0 && mario.go.dir < 0) || (mario.vel.x < 0 && mario.go.dir > 0)) {
+      if (
+        (mario.vel.x > 0 && mario.go.dir < 0) ||
+        (mario.vel.x < 0 && mario.go.dir > 0)
+      ) {
         return "break";
       }
 
