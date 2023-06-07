@@ -13,7 +13,7 @@ export default class Killable extends Trait {
   }
 
   revive() {
-    console.log("Reviving the player");
+    // console.log("Reviving the player");
     this.dead = false;
     this.deadTime = 0;
   }
@@ -31,7 +31,7 @@ export default class Killable extends Trait {
   }
 
   restartGame() {
-    console.log("Restarting game");
+    // console.log("Restarting game");
     const startupScreen = document.querySelector(".startup-wrapper");
     startupScreen.style.display = "flex";
     const restartButton = document.getElementById("startButton");

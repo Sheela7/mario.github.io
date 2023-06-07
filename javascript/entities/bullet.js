@@ -19,7 +19,7 @@ class Behavior extends Trait {
       return;
     }
 
-    console.log("Collision in Bullet", them.vel.y);
+    // console.log("Collision in Bullet", them.vel.y);
     if (them.stomper) {
       if (them.vel.y > us.vel.y) {
         us.killable.kill();

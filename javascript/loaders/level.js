@@ -52,7 +52,7 @@ function setupEntities(levelSpec, level, entityFactory) {
 }
 
 export function createLevelLoader(entityFactory) {
-  console.log("loading the level 1");
+  // console.log("loading the level 1");
   return function loadLevel(name) {
     return loadJSON(`./levels/${name}.json`)
       .then((levelSpec) =>

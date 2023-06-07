@@ -15,7 +15,7 @@ export default class MusicPlayer {
       audio.pause();
     }
     const audio = this.tracks.get(name);
-    console.log("Audio is as; ", audio);
+    // console.log("Audio is as; ", audio);
     audio.play();
     return audio;
   }
