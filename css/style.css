@@ -18,12 +18,14 @@ body {
 }
 
 .startup-wrapper {
+  position: fixed;
   width: 100vw;
   height: 100vh;
   margin: auto;
   background-color: black;
   display: flex;
   justify-content: space-around;
+  overflow: hidden;
 }
 
 .mario img {
@@ -44,8 +46,8 @@ body {
 
 #startButton {
   position: fixed;
-  top: 62vh;
-  left: 70vw;
+  top: 65vh;
+  left: 60vw;
   z-index: 2;
   font-size: 5vh;
   font-weight: 40;
@@ -55,7 +57,6 @@ body {
   cursor: pointer;
   height: 7vh;
   width: 9vw;
-  font-size: 4vh;
   border-radius: 20px;
   padding: auto;
 }
@@ -77,10 +78,10 @@ body {
   }
 
   #startButton {
-    top: 80vh;
-    left: 50%;
+    top: 50vh;
+    left: 50vh;
     transform: translateX(-50%);
-    width: 50%;
+    width: 80%;
     font-size: 3vh;
   }
 }
