@@ -4,19 +4,13 @@ import { createAnim } from "../anim.js";
 
 export function loadSpriteSheet(name) {
   return loadJSON(`./sprites/${name}.json`)
-    .then((sheetSpec) =>
-      Promise.all([sheetSpec, loadImage(sheetSpec.imageURL)])
-    )
+    .then((sheetSpec) => Promise.all([sheetSpec, loadImage(sheetSpec.imageURL)]))
     .then(([sheetSpec, image]) => {
       const sprites = new SpriteSheet(image, sheetSpec.tileW, sheetSpec.tileH);
 
       if (sheetSpec.tiles) {
         sheetSpec.tiles.forEach((tileSpec) => {
-          sprites.defineTile(
-            tileSpec.name,
-            tileSpec.index[0],
-            tileSpec.index[1]
-          );
+          sprites.defineTile(tileSpec.name, tileSpec.index[0], tileSpec.index[1]);
         });
       }
 
